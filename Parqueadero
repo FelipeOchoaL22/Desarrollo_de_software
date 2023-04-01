@@ -1,0 +1,87 @@
+// Clase Main Esta tiene errores verificar y agregar los Scanner
+public class Main {
+    public static void main(String[] args) {
+        usuario usuario1 = new usuario("Juan", "Pérez", "contraseña123", "1234567890");
+        Vehiculo vehiculo1 = new Vehiculo("carro", "ABC123");
+        
+        usuario1.setNombres("María");
+        usuario1.setApellidos("González");
+        vehiculo1.setTipo("moto");
+        vehiculo1.setPlaca("DEF456");
+        
+        System.out.println("El usuario se llama " + usuario1.getNombres() + " " + usuario1.getApellidos() + " y su identificación es " + usuario1.getIdentificación());
+        System.out.println("El vehículo es de tipo " + vehiculo1.getTipo() + " y tiene la placa " + vehiculo1.getPlaca());
+    }
+}
+// Clase usuario
+public class usuario {
+    private String nombres;
+    private String apellidos;
+    private String contraseña;
+    private String identificación;
+    
+    public usuario(String nombres, String apellidos, String contraseña, String identificación) {
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.contraseña = contraseña;
+        this.identificación = identificación;
+    }
+    
+    public String getNombres() {
+        return nombres;
+    }
+    
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+    
+    public String getApellidos() {
+        return apellidos;
+    }
+    
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+    
+    public String getContraseña() {
+        return contraseña;
+    }
+    
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+    
+    public String getIdentificación() {
+        return identificación;
+    }
+    
+    public void setIdentificación(String identificación) {
+        this.identificación = identificación;
+    }
+}
+// Clase Vehiculo
+public class Vehiculo {
+    private String tipo;
+    private String[] placa;
+    
+    public Vehiculo(String tipo, String[] placa) {
+        this.tipo = tipo;
+        this.placa = placa;
+    }
+    
+    public String getTipo() {
+        return tipo;
+    }
+    
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
+    public String[] getPlaca() {
+        return placa;
+    }
+    
+    public void setPlaca(String[] placa) {
+        this.placa = placa;
+    }
+}
