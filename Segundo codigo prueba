@@ -1,0 +1,116 @@
+import java.lang.System;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        double precio;
+        System.out.println("--------------------------------------");
+        System.out.println("       Bienvenido a PARQUEAPP");
+        System.out.println("--------------------------------------");
+        System.out.println("         1) Digite su nombre");
+        String nombres = sc.nextLine();
+        System.out.println("         2) Digite su apellido");
+        String apellidos = sc.nextLine();
+        System.out.println("         3) Digite su contraseña");
+        String contraseña = sc.nextLine();
+        System.out.println("         4) Digite su idientificacion");
+        String identificación = sc.nextLine();
+        usuario usuario1 = new usuario(nombres, apellidos, contraseña , identificación);
+        Vehiculo vehiculo1 = new Vehiculo("carro", "ABC123");
+        
+        usuario1.setNombres(nombres);
+        usuario1.setApellidos(apellidos);
+        vehiculo1.setTipo("moto");
+        vehiculo1.setPlaca("DEF456");
+
+        if(tipo.equals("carro")){
+            precio = 6000;
+        }else{
+            precio = 3000;
+        }
+        
+        System.out.println("El usuario se llama " + usuario1.getNombres() + " " + usuario1.getApellidos() + " y su identificación es " + usuario1.getIdentificación());
+        System.out.println("El vehículo es de tipo " + vehiculo1.getTipo() + " y tiene la placa " + vehiculo1.getPlaca());
+    }
+}
+public class usuario {
+    private String nombres;
+    private String apellidos;
+    private String contraseña;
+    private String identificación;
+    private int edad;
+    
+    public usuario(String nombres, String apellidos, String contraseña, String identificación, int edad) {
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.contraseña = contraseña;
+        this.identificación = identificación;
+        this.edad = edad;
+    }
+    
+    public String getNombres() {
+        return nombres;
+    }
+    
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+    
+    public String getApellidos() {
+        return apellidos;
+    }
+    
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+    
+    public String getContraseña() {
+        return contraseña;
+    }
+    
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+    
+    public String getIdentificación() {
+        return identificación;
+    }
+    
+    public void setIdentificación(String identificación) {
+        this.identificación = identificación;
+    }
+
+    public int getedad(){
+        return edad;
+    }
+
+    public void setedad(int edad){
+        this.edad = edad;
+    }
+    public class Vehiculo {
+    private String tipo;
+    private String placa;
+
+    
+    public Vehiculo(String tipo, String placa) {
+        this.tipo = tipo;
+        this.placa = placa;
+    }
+    
+    public String getTipo() {
+        return tipo;
+    }
+    
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
+    public String getPlaca() {
+        return placa;
+    }
+    
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+}
