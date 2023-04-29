@@ -1,0 +1,225 @@
+import java.util.Calendar;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Por favor, ingrese su nombre: ");
+        String nombres = sc.nextLine();
+
+        System.out.println("Por favor, ingrese su apellido: ");
+        String apellidos = sc.nextLine();
+
+        System.out.println("Por favor, ingrese el tipo de su vehículo (moto o carro): ");
+        String tipoVehiculo = sc.nextLine();
+
+        System.out.println("Por favor, ingrese la placa de su vehículo: ");
+        String placaVehiculo = sc.nextLine();
+
+        System.out.println("Por favor, ingrese la fecha de reserva (dd/mm/yyyy): ");
+        String fechaReserva = sc.nextLine();
+
+        System.out.println("Por favor, ingrese la hora de reserva (hh:mm): ");
+        String horaReserva = sc.nextLine();
+
+        usuario usuario1 = new usuario(nombres, apellidos, "contraseña123", "1234567890");
+        Vehiculo vehiculo1 = new Vehiculo(tipoVehiculo, placaVehiculo);
+
+        System.out.println("El usuario se llama " + usuario1.getNombres() + " " + usuario1.getApellidos() + " y su identificación es " + usuario1.getIdentificación());
+
+        // Crear objeto Calendar a partir de la fecha ingresada
+        Calendar fecha = Calendar.getInstance();
+        String[] partesFecha = fechaReserva.split("/");
+        int dia = Integer.parseInt(partesFecha[0]);
+        int mes = Integer.parseInt(partesFecha[1]) - 1; // El mes en Calendar comienza en 0
+        int año = Integer.parseInt(partesFecha[2]);
+        fecha.set(año, mes, dia);
+
+        if (vehiculo1.getTipo().equals("moto")) {
+            System.out.println("El costo de una moto es de $3.000");
+        } else if (vehiculo1.getTipo().equals("carro")) {
+            System.out.println("El costo de un carro es de $6.000");
+        } else {
+            System.out.println("El tipo de vehículo ingresado no es válido.");
+        }
+
+        System.out.println("La placa del vehículo es " + vehiculo1.getPlaca());
+        System.out.println("La fecha de reserva es " + fechaReserva);
+
+        sc.close();
+
+        // Verificar si la hora de reserva está disponible
+        boolean horaDisponible = verificarHoraDisponible(fecha, horaReserva);
+
+        public static boolean verificarHoraDisponible(Calendar fecha, String hora) {
+            // Verificar si la hora de reserva está disponible en la fecha indicada
+            int año = fecha.get(Calendar.YEAR);
+            int mes = fecha.get(Calendar.MONTH);
+            int dia = fecha.get(Calendar.DAY_OF_MONTH);
+            }        
+
+    if (!horaDisponible) {
+    // Si la hora no está disponible, mostrar las horas disponibles para ese día
+    System.out.println("Lo sentimos, la hora de reserva solicitada no está disponible. Las horas disponibles para ese día son: ");
+    mostrarHorasDisponibles(fecha);
+    } else {
+    // Si la hora está disponible, preguntar si el usuario desea confirmar la reserva
+    System.out.println("La hora de reserva solicitada está disponible. ¿Desea confirmar la reserva? (s/n)");
+    String respuestaConfirmacion = sc.next();
+
+    if (respuestaConfirmacion.equalsIgnoreCase("s")) {
+        // Si el usuario confirma la reserva, guardar la información de la reserva y mostrar un mensaje de éxito
+        Reserva reserva = new Reserva(usuario1, vehiculo1, fecha, horaReserva);
+        System.out.println("La hora ha sido seleccionada exitosamente.");
+    } else {
+        // Si el usuario no confirma la reserva, mostrar un mensaje indicando que la hora ha sido liberada
+        System.out.println("La hora ha sido liberada.");
+    }
+}
+sc.close();
+} 
+}
+
+// Clase usuario
+public class usuario {
+    private String nombres;
+    private String apellidos;
+    private String contraseña;
+    private String identificación;
+
+    public usuario(String nombres, String apellidos, String contraseña, String identificación) {
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.contraseña = contraseña;
+        this.identificación = identificación;
+    }
+
+    public String getNombres() {
+        return nombres;
+    }
+
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+
+    public String getIdentificación() {
+        return identificación;
+    }
+
+    public void setIdentificación(String identificación) {
+        this.identificación = identificación;
+    }
+}
+
+// Clase Vehiculo
+public class Vehiculo {
+    private String tipo;
+    private String placa;
+
+    public Vehiculo(String tipo, String placa) {
+        this.tipo = tipo;
+        this.placa = placa;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+}
+           
+    // Clase Reservacion
+        public class Reservacion {
+        private Calendar fechaReservacion;
+        private String horaReservacion;
+        private boolean confirmada;
+        private usuario usuario;
+        private Vehiculo vehiculo;
+        
+        
+        public Reservacion(Calendar fechaReservacion, String horaReservacion, usuario usuario, Vehiculo vehiculo) {
+        this.fechaReservacion = fechaReservacion;
+        this.horaReservacion = horaReservacion;
+        this.confirmada = false;
+        this.usuario = usuario;
+        this.vehiculo = vehiculo;
+        }
+        
+        public Calendar getFechaReservacion() {
+        return fechaReservacion;
+        }
+        
+        public void setFechaReservacion(Calendar fechaReservacion) {
+        this.fechaReservacion = fechaReservacion;
+        }
+        
+        public String getHoraReservacion() {
+        return horaReservacion;
+        }
+        
+        public void setHoraReservacion(String horaReservacion) {
+        this.horaReservacion = horaReservacion;
+        }
+        
+        public boolean isConfirmada() {
+        return confirmada;
+        }
+        
+        public void setConfirmada(boolean confirmada) {
+        this.confirmada = confirmada;
+        }
+        
+        public usuario getUsuario() {
+        return usuario;
+        }
+        
+        public void setUsuario(usuario usuario) {
+        this.usuario = usuario;
+        }
+        
+        public Vehiculo getVehiculo() {
+        return vehiculo;
+        }
+        
+        public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
+        }
+        
+        @Override
+        public String toString() {
+        return "Reservacion{" +
+            "fechaReservacion=" + fechaReservacion.getTime() +
+            ", horaReservacion='" + horaReservacion + '\'' +
+            ", confirmada=" + confirmada +
+            ", usuario=" + usuario.getNombres() + " " + usuario.getApellidos() +
+            ", vehiculo=" + vehiculo.getTipo() + " " + vehiculo.getPlaca() +
+            '}';
+        }
+    }
